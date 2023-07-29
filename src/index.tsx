@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 
-// --------
+// -------- i18next
+import './utils/i18next';
+
+// -------- k18n
 import { createK18n } from './utils/i18n';
 import k18nLang from '@k18n/kibt-fe-shop-c-lang';
 createK18n(k18nLang);

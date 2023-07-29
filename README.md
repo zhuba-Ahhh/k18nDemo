@@ -1,6 +1,6 @@
 # K18n demo
 
-## start
+## Start
 
 ```bash
 npm i
@@ -41,4 +41,26 @@ $k18n.getText({ id: 'some-text', params: { count: 1 }}) // -> 一共 1 个
 // 其他
 $k18n.changeLocale('en') // 手动切换当前的 locale
 $k18n.changeFallbackLocale('en') // 手动切换当前的 fallbackLocale
+```
+
+配置涉及demo中文件
+
+``` bash
+./utils/i18n.ts
+./components/i18n.tsx
+@k18n/kibt-fe-shop-c-lang
+```
+
+## I18next
+
+```bash
+npm install react-i18next i18next --save
+```
+
+配置涉及demo中文件
+
+``` bash
+./utils/i18next.ts
+./components/next.tsx
+./locales
 ```

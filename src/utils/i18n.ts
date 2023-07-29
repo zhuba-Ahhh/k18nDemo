@@ -1,4 +1,4 @@
-// --------
+// -------- k18n
 
 import K18nUtils from '@k18n/k18n-utils';
 import { K18nMessages } from '@k18n/k18n-utils/lib/types';
