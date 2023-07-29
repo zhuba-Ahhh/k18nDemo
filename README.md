@@ -1,46 +1,44 @@
-# Getting Started with Create React App
+# K18n demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## start
 
-## Available Scripts
+```bash
+npm i
 
-In the project directory, you can run:
+npm run start
 
-### `npm start`
+# 需要更新多语音时
+npm run k18n:pull
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 配置 k18n
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+npm i @k18n/k18n-utils @k18n/kibt-fe-shop-c-lang
+# 第二个是转存多语音的仓库
+```
 
-### `npm test`
+@k18n 提供的能力,一般会像这个demo一样进行一些处理方便使用
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```typescript
+import K18nUtils from '@k18n/k18n-utils';
 
-### `npm run build`
+import langs from '<project>'; // 多语言项目名
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+const $k18n = new K18nUtils({
+  messages: langs,
+  locale: '' // 如果不传，会自动通过 navigator.language 获取
+  fallbackLocale: '' // 默认回退到英文
+});
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+$k18n.getText({ id: 'hello' }); // 通过 id 获取
+$k18n.getText({ text: '你好', desc: '打招呼'}) // 通过中文 + 描述获取
 
-### `npm run eject`
+// 假设文案为 -> 一共 {count} 个
+$k18n.getText({ id: 'some-text', params: { count: 1 }}) // -> 一共 1 个
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+// 其他
+$k18n.changeLocale('en') // 手动切换当前的 locale
+$k18n.changeFallbackLocale('en') // 手动切换当前的 fallbackLocale
+```
